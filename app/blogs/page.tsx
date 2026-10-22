@@ -1,7 +1,7 @@
-import { getBlogs } from '../services/blogs';
+import { getBlogs } from '../services/blogs'
 
 const Blogs = () => {
-  const blogs = getBlogs();
+  const blogs = getBlogs()
   return (
     <div>
       <h2>Blogs</h2>
@@ -13,6 +13,6 @@ const Blogs = () => {
         ))}
       </ul>
     </div>
-  );
-};
-export default Blogs;
+  )
+}
+export default Blogs

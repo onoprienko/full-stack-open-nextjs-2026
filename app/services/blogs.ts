@@ -13,13 +13,13 @@ const blogs = [
     url: 'url 2',
     likes: 2,
   },
-];
+]
 
-let nextId = 3;
+let nextId = 3
 
 export const getBlogs = () => {
-  return blogs;
-};
+  return blogs
+}
 
 export const addBlog = (
   title: string,
@@ -27,5 +27,5 @@ export const addBlog = (
   url: string,
   likes: number,
 ) => {
-  blogs.push({ id: nextId++, title, author, url, likes });
-};
+  blogs.push({ id: nextId++, title, author, url, likes })
+}

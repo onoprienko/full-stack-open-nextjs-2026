@@ -1,4 +1,4 @@
-import { createBlog } from '@/app/actions/blogs';
+import { createBlog } from '@/app/actions/blogs'
 
 const NewBlog = () => {
   return (
@@ -33,7 +33,7 @@ const NewBlog = () => {
         <button type="submit">Create</button>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default NewBlog;
+export default NewBlog
