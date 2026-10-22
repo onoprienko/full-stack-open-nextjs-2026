@@ -15,13 +15,13 @@ const blogs = [
   },
 ];
 
-let nextId = 4;
+let nextId = 3;
 
 export const getBlogs = () => {
   return blogs;
 };
 
-export const addNote = (
+export const addBlog = (
   title: string,
   author: string,
   url: string,
