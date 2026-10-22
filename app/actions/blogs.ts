@@ -21,3 +21,8 @@ export const addBlogLike = async (formData: FormData) => {
   revalidatePath(`/blogs/${id}`)
   revalidatePath('/blogs')
 }
+
+export const filterBlogs = async (formData: FormData) => {
+  const filter = formData.get('filter') as string
+  redirect(`/blogs?filter=${filter}`)
+}
