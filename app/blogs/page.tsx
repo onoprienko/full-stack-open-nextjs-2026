@@ -7,12 +7,14 @@ const Blogs = () => {
     <div>
       <h2>Blogs</h2>
       <ul>
-        {blogs.map((blog) => (
-          <li key={blog.id}>
-            <Link href={`/blogs/${blog.id}`}>{blog.title}</Link>
-            {blog.author} {blog.url} {blog.likes}
-          </li>
-        ))}
+        {blogs
+          .sort((a, b) => b.likes - a.likes)
+          .map((blog) => (
+            <li key={blog.id}>
+              <Link href={`/blogs/${blog.id}`}>{blog.title}</Link>
+              {blog.author} {blog.url} {blog.likes}
+            </li>
+          ))}
       </ul>
     </div>
   )
