@@ -15,9 +15,10 @@ export const addBlog = async (
   url: string,
   likes: number,
 ) => {
-  const user = await db.query.users.findFirst({
+  // mock user id
+  const user = (await db.query.users.findFirst({
     orderBy: sql`RANDOM()`,
-  })
+  })) || { id: 1 }
 
   await db.insert(blogs).values({ title, author, url, likes, userId: user.id })
 }
