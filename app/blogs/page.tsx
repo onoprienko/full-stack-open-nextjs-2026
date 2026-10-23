@@ -10,9 +10,9 @@ const Blogs = async ({
   searchParams: Promise<{ filter?: string }>
 }) => {
   const { filter } = await searchParams
-  const blogs = filter
-    ? getBlogs().filter((blog) => blog.title.includes(filter))
-    : getBlogs()
+
+  const blogs = filter ? await getBlogs(filter) : await getBlogs('')
+
   return (
     <div>
       <h2>Blogs</h2>
