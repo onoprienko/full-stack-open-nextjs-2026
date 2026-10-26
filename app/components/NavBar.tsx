@@ -29,6 +29,10 @@ const NavBar = () => {
             create new
           </Link>
           {' | '}
+          <Link className="hover:text-gray-300 cursor-pointer" href="/me">
+            me
+          </Link>
+          {' | '}
           <em className="opacity-50">{session.user?.name} logged in</em>{' '}
           <button
             className="hover:text-gray-300 cursor-pointer"
