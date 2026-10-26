@@ -7,25 +7,45 @@ const NavBar = () => {
   const { data: session } = useSession()
 
   return (
-    <nav>
-      <Link href="/">home</Link>
+    <nav className="bg-gray-800 text-white px-6 py-3 flex items-center gap-4">
+      <Link className="hover:text-gray-300 cursor-pointer" href="/">
+        home
+      </Link>
       {' | '}
-      <Link href="/blogs">blogs</Link>
+      <Link className="hover:text-gray-300 cursor-pointer" href="/blogs">
+        blogs
+      </Link>
       {' | '}
-      <Link href="/users">users</Link>
+      <Link className="hover:text-gray-300 cursor-pointer" href="/users">
+        users
+      </Link>
       {' | '}
       {session ? (
         <>
-          <Link href="/blogs/new">create new</Link>
+          <Link
+            className="hover:text-gray-300 cursor-pointer"
+            href="/blogs/new"
+          >
+            create new
+          </Link>
           {' | '}
-          <em>{session.user?.name} logged in</em>{' '}
-          <button onClick={() => signOut()}>logout</button>
+          <em className="opacity-50">{session.user?.name} logged in</em>{' '}
+          <button
+            className="hover:text-gray-300 cursor-pointer"
+            onClick={() => signOut()}
+          >
+            logout
+          </button>
         </>
       ) : (
         <>
-          <Link href="/login">login</Link>
+          <Link className="hover:text-gray-300 cursor-pointer" href="/login">
+            login
+          </Link>
           {' | '}
-          <Link href="/register">register</Link>
+          <Link className="hover:text-gray-300 cursor-pointer" href="/register">
+            register
+          </Link>
         </>
       )}
     </nav>

@@ -34,16 +34,26 @@ export default function LoginPage() {
         <div>
           <label>
             Username
-            <input type="text" name="username" required />
+            <input type="text" name="username" required className="border" />
           </label>
         </div>
         <div>
           <label>
             Password
-            <input type="password" name="password" required />
+            <input
+              type="password"
+              name="password"
+              required
+              className="border"
+            />
           </label>
         </div>
-        <button type="submit">Login</button>
+        <button
+          className="border p-1 px-4 cursor-pointer hover:bg-green-500 transition"
+          type="submit"
+        >
+          Login
+        </button>
       </form>
     </div>
   )

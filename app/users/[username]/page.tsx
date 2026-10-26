@@ -24,7 +24,12 @@ const UserPage = async ({
       <ul>
         {user.blogs?.map((blog) => (
           <li key={blog.id}>
-            <Link href={`/blogs/${blog.id}`}>{blog.title}</Link>
+            <Link
+              className="text-blue-500 underline"
+              href={`/blogs/${blog.id}`}
+            >
+              {blog.title}
+            </Link>
             {blog.author} {blog.url} {blog.likes}
           </li>
         ))}

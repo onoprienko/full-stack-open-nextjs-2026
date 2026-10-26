@@ -1,14 +1,29 @@
 'use client'
 
-import { useActionState, useState } from 'react'
+import { useActionState, useState, useEffect } from 'react'
 import { createBlog } from '@/app/actions/blogs'
+import { useRouter } from 'next/navigation'
+import { useNotification } from '../../components/NotificationContext'
 
 const NewBlog = () => {
-  const [state, formAction] = useActionState(createBlog, { error: '' })
+  const [state, formAction] = useActionState(createBlog, {
+    error: '',
+    success: false,
+  })
 
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
   const [url, setUrl] = useState('')
+
+  const { showNotification } = useNotification()
+  const router = useRouter()
+
+  useEffect(() => {
+    if (state.success) {
+      showNotification('blog created')
+      router.push('/blogs')
+    }
+  }, [state, showNotification, router])
 
   return (
     <div>
@@ -21,6 +36,7 @@ const NewBlog = () => {
               type="text"
               name="title"
               required
+              className="border"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
@@ -33,6 +49,7 @@ const NewBlog = () => {
               type="text"
               name="author"
               required
+              className="border"
               value={author}
               onChange={(e) => setAuthor(e.target.value)}
             />
@@ -45,6 +62,7 @@ const NewBlog = () => {
               type="text"
               name="url"
               required
+              className="border"
               value={url}
               onChange={(e) => setUrl(e.target.value)}
             />
@@ -53,11 +71,16 @@ const NewBlog = () => {
         <div>
           <label>
             Likes
-            <input type="number" name="likes" required />
+            <input type="number" name="likes" required className="border" />
           </label>
         </div>
 
-        <button type="submit">Create</button>
+        <button
+          className="border p-1 px-4 cursor-pointer hover:bg-green-500 transition"
+          type="submit"
+        >
+          Create
+        </button>
         {state.error && <p style={{ color: 'red' }}>{state.error}</p>}
       </form>
     </div>

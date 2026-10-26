@@ -22,6 +22,7 @@ export default function RegisterPage() {
               type="text"
               name="username"
               required
+              className="border"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
@@ -34,6 +35,7 @@ export default function RegisterPage() {
               type="text"
               name="name"
               required
+              className="border"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
@@ -46,6 +48,7 @@ export default function RegisterPage() {
               type="password"
               name="password"
               required
+              className="border"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -58,12 +61,18 @@ export default function RegisterPage() {
               type="password"
               name="passwordconfirm"
               required
+              className="border"
               value={passwordConfirm}
               onChange={(e) => setPasswordConfirm(e.target.value)}
             />
           </label>
         </div>
-        <button type="submit">Register</button>
+        <button
+          className="border p-1 px-4 cursor-pointer hover:bg-green-500 transition"
+          type="submit"
+        >
+          Register
+        </button>
         {state.error && <p style={{ color: 'red' }}>{state.error}</p>}
       </form>
     </div>

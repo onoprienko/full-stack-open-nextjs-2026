@@ -17,7 +17,7 @@ const Blogs = async ({
     <div>
       <h2>Blogs</h2>
       <form action={filterBlogs}>
-        <input type="search" name="filter" />
+        <input type="search" name="filter" className="border mr-2" />
         <button type="submit">Filter blogs by title</button>
       </form>
       <ul>
@@ -25,7 +25,12 @@ const Blogs = async ({
           .sort((a, b) => b.likes - a.likes)
           .map((blog) => (
             <li key={blog.id}>
-              <Link href={`/blogs/${blog.id}`}>{blog.title}</Link>
+              <Link
+                className="text-blue-500 underline"
+                href={`/blogs/${blog.id}`}
+              >
+                {blog.title}
+              </Link>{' '}
               {blog.author} {blog.url} {blog.likes}
             </li>
           ))}
