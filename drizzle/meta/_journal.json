@@ -15,6 +15,20 @@
       "when": 1793019522156,
       "tag": "0001_handy_marvex",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1793033526836,
+      "tag": "0002_clean_lilith",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1793038074235,
+      "tag": "0003_wide_eternals",
+      "breakpoints": true
     }
   ]
 }

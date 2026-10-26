@@ -11,6 +11,8 @@ const NewBlog = () => {
     success: false,
   })
 
+  // BUG: TODO: probably it is better to use previous value as default after formaction
+  // after form submit return to add-new-form page will trigger some wierd activity
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
   const [url, setUrl] = useState('')

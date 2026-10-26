@@ -3,6 +3,7 @@ import { auth } from '@/auth'
 import { redirect } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
 import { addBlog, addLike } from '../services/blogs'
+import { addBlogToBlogList } from '../services/blogList'
 
 export const createBlog = async (
   prevState: { error: string },
@@ -34,7 +35,8 @@ export const createBlog = async (
       success: false,
     }
 
-  await addBlog(title, author, url, likes as number)
+  const blog = await addBlog(title, author, url, likes as number)
+  await addBlogToBlogList(blog.id)
   revalidatePath('/blogs')
   return { error: '', success: true }
 }
@@ -44,6 +46,13 @@ export const addBlogLike = async (formData: FormData) => {
   await addLike(id)
   revalidatePath(`/blogs/${id}`)
   revalidatePath('/blogs')
+}
+
+export const addToReadingList = async (formData: FormData) => {
+  const id = Number(formData.get('id'))
+  await addBlogToBlogList(id)
+  revalidatePath(`/blogs/${id}`)
+  revalidatePath('/users')
 }
 
 export const filterBlogs = async (formData: FormData) => {

@@ -1,0 +1,1 @@
+ALTER TABLE "bloglists" ADD COLUMN "read" boolean DEFAULT false;

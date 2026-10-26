@@ -1,10 +1,10 @@
 import Link from 'next/link'
-import { getUsers } from '../services/users'
+import { getUsersWithBlogLists } from '../services/users'
 
 export const instant = false
 
 const Users = async () => {
-  const users = await getUsers()
+  const users = await getUsersWithBlogLists()
 
   return (
     <div>
@@ -18,6 +18,9 @@ const Users = async () => {
             >
               {user.name}
             </Link>
+            {' '}
+            ({user.blogLists.length}{' '}
+            {user.blogLists.length === 1 ? 'blog' : 'blogs'} saved)
           </li>
         ))}
       </ul>
