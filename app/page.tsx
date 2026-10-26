@@ -1,10 +1,11 @@
+import Homepage from './homepage.mdx'
+
 const Home = () => {
   return (
-    <div>
-      <div>
-        <h2>blogs app</h2>
-      </div>
+    <div className="markdown">
+      <Homepage />
     </div>
   )
 }
+
 export default Home

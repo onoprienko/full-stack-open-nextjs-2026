@@ -4,6 +4,13 @@ import NavBar from './components/NavBar'
 import { NotificationProvider } from './components/NotificationContext'
 import Notification from './components/Notification'
 
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Blogs app',
+  description: 'A simple blogs application built with Next.js',
+}
+
 export default function RootLayout({
   children,
 }: {
