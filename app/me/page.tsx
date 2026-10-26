@@ -3,6 +3,7 @@ import { generateToken } from '@/app/actions/tokens'
 import { getCurrentUser } from '@/app/services/session'
 import { getUserWithBlogList } from '../services/users'
 import Link from 'next/link'
+import { updateBlogReadStatus } from '@/app/actions/blogs'
 
 export const instant = false
 
@@ -19,6 +20,8 @@ const MePage = async () => {
   const bloglistUnread = userWithBloglist
     ? userWithBloglist.blogLists.filter(({ read }) => read === false)
     : null
+
+  console.log(bloglistUnread)
 
   return (
     <div>
@@ -64,15 +67,6 @@ const MePage = async () => {
                   {blog.title}
                 </Link>{' '}
                 by {blog.author} {blog.url} {blog.likes}{' '}
-                <form>
-                  <input type="hidden" name="id" value={blog.id} />
-                  <button
-                    type="submit"
-                    className="border p-1 px-4 cursor-pointer hover:bg-green-500 transition"
-                  >
-                    mark as read
-                  </button>
-                </form>
               </li>
             ))}
           </ul>
@@ -82,7 +76,7 @@ const MePage = async () => {
         <>
           <h4>Unread ({bloglistUnread?.length})</h4>
           <ul>
-            {bloglistUnread.map(({ blog }) => (
+            {bloglistUnread.map(({ blog, id }) => (
               <li key={blog.id} className="border mb-1 p-2">
                 <Link
                   className="text-blue-500 underline"
@@ -91,6 +85,16 @@ const MePage = async () => {
                   {blog.title}
                 </Link>{' '}
                 by {blog.author} {blog.url} {blog.likes}{' '}
+                <form action={updateBlogReadStatus}>
+                  <input type="hidden" name="id" value={id} />
+                  <input type="hidden" name="read" value={1} />
+                  <button
+                    type="submit"
+                    className="border p-1 px-4 cursor-pointer hover:bg-green-500 transition"
+                  >
+                    Mark as read
+                  </button>
+                </form>
               </li>
             ))}
           </ul>

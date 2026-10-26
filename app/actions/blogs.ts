@@ -3,7 +3,7 @@ import { auth } from '@/auth'
 import { redirect } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
 import { addBlog, addLike } from '../services/blogs'
-import { addBlogToBlogList } from '../services/blogList'
+import { addBlogToBlogList, setBlogReadStatus } from '../services/blogList'
 
 export const createBlog = async (
   prevState: { error: string },
@@ -53,6 +53,15 @@ export const addToReadingList = async (formData: FormData) => {
   await addBlogToBlogList(id)
   revalidatePath(`/blogs/${id}`)
   revalidatePath('/users')
+}
+
+export const updateBlogReadStatus = async (formData: FormData) => {
+  const id = Number(formData.get('id'))
+  const read = Boolean(formData.get('read'))
+
+  console.log(id, read)
+  await setBlogReadStatus(id, read === true)
+  revalidatePath('/me')
 }
 
 export const filterBlogs = async (formData: FormData) => {
