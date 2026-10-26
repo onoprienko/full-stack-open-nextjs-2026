@@ -12,9 +12,9 @@ const UserPage = async ({
   const { username } = await params
   const user = await getUserWithBlogList(username)
 
-  if (!user) {
-    notFound()
-  }
+  if (!user) notFound()
+
+  console.log(user)
 
   return (
     <div>
@@ -22,7 +22,7 @@ const UserPage = async ({
       <p>Username: {user.username}</p>
       <h3>Reading list</h3>
       <ul>
-        {user.blogLists.map(({ blog }) => (
+        {user.blogLists.map(({ blog, read }) => (
           <li key={blog.id}>
             <Link
               className="text-blue-500 underline"
@@ -30,7 +30,7 @@ const UserPage = async ({
             >
               {blog.title}
             </Link>{' '}
-            by {blog.author} {blog.url} {blog.likes}
+            by {blog.author} {blog.url} {blog.likes} {read ? 'Read' : 'Unread'}
           </li>
         ))}
       </ul>

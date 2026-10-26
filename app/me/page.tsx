@@ -13,7 +13,12 @@ const MePage = async () => {
 
   const userWithBloglist = await getUserWithBlogList(user.username)
 
-  console.log(userWithBloglist)
+  const bloglistRead = userWithBloglist
+    ? userWithBloglist.blogLists.filter(({ read }) => read === true)
+    : null
+  const bloglistUnread = userWithBloglist
+    ? userWithBloglist.blogLists.filter(({ read }) => read === false)
+    : null
 
   return (
     <div>
@@ -44,21 +49,53 @@ const MePage = async () => {
       </form>
       <hr />
       <h3>Reading list</h3>
-      <ul>
-        {userWithBloglist
-          ? userWithBloglist.blogLists.map(({ blog }) => (
-              <li key={blog.id}>
+
+      {bloglistRead ? (
+        <>
+          {' '}
+          <h4>Read ({bloglistRead?.length})</h4>
+          <ul>
+            {bloglistRead.map(({ blog }) => (
+              <li key={blog.id} className="border mb-1 p-2">
                 <Link
                   className="text-blue-500 underline"
                   href={`/blogs/${blog.id}`}
                 >
                   {blog.title}
                 </Link>{' '}
-                by {blog.author} {blog.url} {blog.likes}
+                by {blog.author} {blog.url} {blog.likes}{' '}
+                <form>
+                  <input type="hidden" name="id" value={blog.id} />
+                  <button
+                    type="submit"
+                    className="border p-1 px-4 cursor-pointer hover:bg-green-500 transition"
+                  >
+                    mark as read
+                  </button>
+                </form>
               </li>
-            ))
-          : null}
-      </ul>
+            ))}
+          </ul>
+        </>
+      ) : null}
+      {bloglistUnread ? (
+        <>
+          <h4>Unread ({bloglistUnread?.length})</h4>
+          <ul>
+            {bloglistUnread.map(({ blog }) => (
+              <li key={blog.id} className="border mb-1 p-2">
+                <Link
+                  className="text-blue-500 underline"
+                  href={`/blogs/${blog.id}`}
+                >
+                  {blog.title}
+                </Link>{' '}
+                by {blog.author} {blog.url} {blog.likes}{' '}
+              </li>
+            ))}
+          </ul>
+        </>
+      ) : null}
     </div>
   )
 }
