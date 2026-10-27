@@ -78,6 +78,7 @@ const NewBlog = () => {
         </div>
 
         <button
+          data-testid="create-blog-button"
           className="border p-1 px-4 cursor-pointer hover:bg-green-500 transition"
           type="submit"
         >

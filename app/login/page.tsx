@@ -29,7 +29,11 @@ export default function LoginPage() {
   return (
     <div>
       <h2>Login</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && (
+        <p data-testid="error-message" style={{ color: 'red' }}>
+          {error}
+        </p>
+      )}
       <form onSubmit={handleSubmit}>
         <div>
           <label>
@@ -51,6 +55,7 @@ export default function LoginPage() {
         <button
           className="border p-1 px-4 cursor-pointer hover:bg-green-500 transition"
           type="submit"
+          data-testid="login-button"
         >
           Login
         </button>

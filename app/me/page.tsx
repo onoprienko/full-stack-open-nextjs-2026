@@ -26,7 +26,7 @@ const MePage = async () => {
   return (
     <div>
       <h2>My Profile</h2>
-      <p>
+      <p data-testid="user-username">
         <b>Name:</b> {user.name}
       </p>
       <p>

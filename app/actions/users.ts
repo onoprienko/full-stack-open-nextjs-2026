@@ -15,12 +15,22 @@ export const registerUser = async (
   const passwordConfirm = formData.get('passwordconfirm') as string
 
   if (!username || username.length < 4)
-    return { error: 'usermane must be at least 4 characters long' }
+    return {
+      error: 'usermane must be at least 4 characters long',
+      id: 'username-error',
+    }
   if (!name || name.length < 4)
-    return { error: 'name must be at least 4 characters long' }
+    return {
+      error: 'name must be at least 4 characters long',
+      id: 'name-error',
+    }
   if (!password || password.length < 4)
-    return { error: 'password must be at least 4 characters long' }
-  if (password !== passwordConfirm) return { error: 'password not confirmed' }
+    return {
+      error: 'password must be at least 4 characters long',
+      id: 'password-error',
+    }
+  if (password !== passwordConfirm)
+    return { error: 'password not confirmed', id: 'passwordConfirm-error' }
 
   const passwordHash = await bcrypt.hash(password, 10)
 

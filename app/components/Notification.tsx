@@ -12,7 +12,11 @@ export default function Notification() {
   }
 
   return (
-    <div className="px-2 py-4 text-white" style={style}>
+    <div
+      data-testid="notification"
+      className="px-2 py-4 text-white"
+      style={style}
+    >
       {message}
     </div>
   )
