@@ -17,10 +17,17 @@ const Blogs = async ({
     <div>
       <h2>Blogs</h2>
       <form action={filterBlogs}>
-        <input type="search" name="filter" className="border mr-2" />
-        <button type="submit">Filter blogs by title</button>
+        <input
+          data-testid="filter-input"
+          type="search"
+          name="filter"
+          className="border mr-2"
+        />
+        <button data-testid="search-button" type="submit">
+          Filter blogs by title
+        </button>
       </form>
-      <ul>
+      <ul data-testid="blogs-list">
         {blogs
           .sort((a, b) => b.likes - a.likes)
           .map((blog) => (
@@ -31,7 +38,7 @@ const Blogs = async ({
               >
                 {blog.title}
               </Link>{' '}
-              {blog.author} {blog.url} {blog.likes}
+              {blog.author} - {blog.url} - {blog.likes} likes
             </li>
           ))}
       </ul>

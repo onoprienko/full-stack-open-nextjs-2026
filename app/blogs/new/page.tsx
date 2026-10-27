@@ -59,7 +59,7 @@ const NewBlog = () => {
         </div>
         <div>
           <label>
-            Url
+            URL
             <input
               type="text"
               name="url"
@@ -73,7 +73,13 @@ const NewBlog = () => {
         <div>
           <label>
             Likes
-            <input type="number" name="likes" required className="border" />
+            <input
+              type="number"
+              name="likes"
+              required
+              className="border"
+              defaultValue={0}
+            />
           </label>
         </div>
 
